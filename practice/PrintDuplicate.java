@@ -1,17 +1,25 @@
 import java.util.*;
 public class PrintDuplicate {
-	public static void removeDuplicates(String text)
+	public static void printDuplicates(String str)
 	{
-		String resultString = new String();
+		int count = 0;
+		str = str.toLowerCase();
+		char[] charArr = str.toCharArray();
 		
-		for(int i=0; i<text.length(); i++)
+		for(int i=0; i<charArr.length; i++)
 		{
-			char letter = text.charAt(i);
-			if(resultString.indexOf(letter) < 0)
-				resultString += letter;
+			count = 1;
+			for(int j=i+1; j<charArr.length; j++)
+			{
+				if(charArr[i] == charArr[j] && charArr[i] != '\0' && charArr[i] != '0')
+				{
+					count++;
+					charArr[j] = '0';
+				}
+			}
+			if(count > 1 && charArr[i]!='0')
+				System.out.println(charArr[i]);
 		}
-		
-		System.out.println("New String after removing duplicates: " + resultString);
 	}
 
 	public static void main(String[] args) {
@@ -21,7 +29,8 @@ public class PrintDuplicate {
 		System.out.println("Enter string:");
 		String str = sc.nextLine();
 		
-		removeDuplicates(str);
+		System.out.println("Duplicate Characters:");
+		printDuplicates(str);
 		
 		sc.close();
 	}
